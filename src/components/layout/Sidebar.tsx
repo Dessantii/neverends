@@ -4,9 +4,25 @@ import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import { usePathname, useRouter } from 'next/navigation'
 import {
-  LayoutDashboard, Users, UserCheck, Package,
-  CalendarCheck, DollarSign, CheckSquare, Settings,
-  Menu, X, LogOut, ChevronLeft, ChevronRight,
+  LayoutDashboard,  // home / visão geral
+  TrendingUp,       // dashboard comercial
+  DollarSign,       // dashboard financeiro
+  CalendarDays,     // dashboard operacional
+  BarChart2,        // dashboard diretoria  ← era "BarChart" (errado)
+  Users,
+  Package,
+  BookOpen,
+  FileText,
+  Wrench,
+  CheckSquare,
+  Settings,
+  UserCheck,
+  CalendarCheck,
+  ChevronLeft,
+  ChevronRight,
+  Menu,
+  X,
+  LogOut,
 } from 'lucide-react'
 import { useAuth, temPermissao } from '@/contexts/AuthContext'
 
@@ -24,7 +40,11 @@ const MENU_ITENS = [
   { href: '/financeiro', label: 'Financeiro',   icon: DollarSign,      modulo: 'financeiro' },
   { href: '/tarefas',    label: 'Tarefas',      icon: CheckSquare,     modulo: 'tarefas' },
   { href: '/admin',      label: 'Admin',        icon: Settings,        modulo: 'admin' },
-  { href: '/operacional', label: 'Operacional',  icon: Settings,           modulo: 'operacional' }
+  { href: '/operacional', label: 'Operacional',  icon: Settings,           modulo: 'operacional' },
+  { href: '/dashboard/comercial',  label: 'Comercial',  icon: TrendingUp,    perfis: ['administrador','gestao','comercial'] },
+  { href: '/dashboard/financeiro', label: 'Financeiro', icon: DollarSign,    perfis: ['administrador','gestao','financeiro'] },
+  { href: '/dashboard/operacional',label: 'Operacional',icon: CalendarDays,  perfis: ['administrador','gestao','operacao'] },
+  { href: '/dashboard/diretoria',  label: 'Diretoria',  icon: BarChart2,      perfis: ['administrador','gestao'] },
 ]
 
 const PERFIL_LABEL: Record<string, string> = {
